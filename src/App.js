@@ -78,12 +78,29 @@ function App() {
       });
   }
 
+  function deleteMerchant() {
+    let id = prompt("Enter the merchant's ID:");
+
+    fetch(`http://localhost:3001/merchant/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        return response.text();
+      })
+      .then((data) => {
+        alert(data);
+        getMerchant();
+      });
+  }
+
   return (
     <div className="App">
       <header>Personal Wallet</header>
-      {merchants ? merchants : "There is no merchant data available"}
+      { merchants.length > 0 ? merchants : "There is no merchant data available"}
       <br />
       <button onClick={createMerchant}>Add Merchant</button>
+
+      <button onClick={deleteMerchant}>Delete Merchant</button>
 
       <div className="grid grid-row">
         <a href="/all-wallets">All Wallets</a>
