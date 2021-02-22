@@ -36,12 +36,12 @@ const createMerchant = (body) => {
   });
 };
 
-const deleteMerchant = () => {
+const deleteMerchant = (id) => {
   return new Promise(function (resolve, reject) {
-    const id = parseInt(request.params.id);
+    // const id = parseInt(request.params.id);
 
     pool.query(
-      `DELETE FROM personal_wallet WHERE id = $1`,
+      `DELETE FROM personal_wallet WHERE user_id = $1`,
       [id],
       (error, results) => {
         if (error) reject(error);
