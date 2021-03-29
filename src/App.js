@@ -95,29 +95,66 @@ function App() {
 
   return (
     <div className="App">
-      <header>Personal Wallet</header>
-      { merchants.length > 0 ? merchants : "There is no merchant data available"}
+      <div className="mt-4">
+        {merchants.length > 0
+          ? merchants
+          : "There is no merchant data available"}
+      </div>
       <br />
-      <button onClick={createMerchant}>Add Merchant</button>
+      <button
+        className="bg-green-400 p-4 m-4 rounded-sm"
+        onClick={createMerchant}
+      >
+        Add Merchant
+      </button>
 
-      <button onClick={deleteMerchant}>Delete Merchant</button>
+      <button
+        className="bg-red-400 p-4 m-4 rounded-sm"
+        onClick={deleteMerchant}
+      >
+        Delete Merchant
+      </button>
+      <div className="mx-4">
+        <header className="bg-blue-400 p-2 w-2/3">Personal Wallet UI</header>
 
-      <div className="grid grid-row">
-        <a href="/all-wallets">All Wallets</a>
-        <a href="/new-wallet">New Wallet</a>
-        <a href="/check-balance">Check Balance</a>
-        <a href="/add-fund">Add Funds</a>
-        <a href="/spend-fund">Spend Funds</a>
-        <a href="/all-transactions">All Transactions</a>
+        <div className="grid grid-row float-left">
+          <a
+            className="bg-yellow-400 p-1 hover:bg-yellow-500"
+            href="/all-wallets"
+          >
+            All Wallets
+          </a>
+          <a className=" bg-blue-400 p-1  hover:bg-blue-500" href="/new-wallet">
+            New Wallet
+          </a>
+          <a
+            className=" bg-blue-400 p-1  hover:bg-blue-500"
+            href="/check-balance"
+          >
+            Check Balance
+          </a>
+          <a className=" bg-blue-400 p-1  hover:bg-blue-500" href="/add-fund">
+            Add Funds
+          </a>
+          <a className=" bg-blue-400 p-1  hover:bg-blue-500" href="/spend-fund">
+            Spend Funds
+          </a>
+          <a
+            className=" bg-blue-400 p-1  hover:bg-blue-500"
+            href="/all-transactions"
+          >
+            All Transactions
+          </a>
+        </div>
       </div>
 
-      <table style={{ background: "#fff" }} className="">
+      <table className="w-1/2" style={{ background: "#fff" }}>
         <thead>
-          <tr>
-            <th>User Id</th>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Balance (Rs)</th>
+          <tr className=" bg-blue-200">
+            <th className="py-1 px-2">User Id</th>
+            <th className="px-2">Name</th>
+            <th className="px-2">Phone</th>
+            <th className="px-2">Balance (Rs)</th>
           </tr>
         </thead>
         <tbody>
