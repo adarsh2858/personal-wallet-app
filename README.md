@@ -17,3 +17,5 @@ Some configurations in the PostgreSQL -
 3. `alter role my_user CREATEDB;` because superuser should not be used.
 4. 
 
+Tips - 
+If you are stuck in the Peer authentication error, follow [this](https://itsfoss.com/install-postgresql-ubuntu/) article.
