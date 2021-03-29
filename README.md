@@ -15,7 +15,9 @@ Some configurations in the PostgreSQL -
 1. List all users - `\du`
 2. `create role my_user with login password 'root';`
 3. `alter role my_user CREATEDB;` because superuser should not be used.
-4. 
+
+Run the following inside psql shell (to add auto increment in postgres) -
+1. `alter table personal_wallet add column user_id serial primary key;`
 
 Tips - 
 If you are stuck in the Peer authentication error, follow [this](https://itsfoss.com/install-postgresql-ubuntu/) article.
