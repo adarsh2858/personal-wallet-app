@@ -19,5 +19,12 @@ Some configurations in the PostgreSQL -
 Run the following inside psql shell (to add auto increment in postgres) -
 1. `alter table personal_wallet add column user_id serial primary key;`
 
+Add unique constraint to the balance column of the `personal_wallet` table:
+- `ALTER TABLE personal_wallet ADD CONSTRAINT unique_balance UNIQUE(balance);`
+
+Create transactions table - 
+1. `CREATE TYPE transaction_type AS ENUM ('add_funds', 'spend_funds');`
+2. `CREATE TABLE transactions (user_id INTEGER, transaction_type transaction_type, trans_date TIMESTAMP, initial_balance INTEGER, amount INTEGER, final_balance INTEGER, remarks VARCHAR(30), FOREIGN KEY (user_id) REFERENCES personal_wallet(user_id), FOREIGN KEY (final_balance) REFERENCES personal_wallet(balance));`
+
 Tips - 
 If you are stuck in the Peer authentication error, follow [this](https://itsfoss.com/install-postgresql-ubuntu/) article.
