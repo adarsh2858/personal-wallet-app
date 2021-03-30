@@ -2,51 +2,13 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import AllWallets from "./components/AllWallets";
 import NewWallet from "./components/NewWallet";
-
-const data = [
-  {
-    userId: "Usr1",
-    name: "Name 1",
-    phone: "9988999877",
-    balance: 765.43,
-  },
-  {
-    userId: "Usr2",
-    name: "Name 2",
-    phone: "7763423688",
-    balance: 443.24,
-  },
-  {
-    userId: "Usr3",
-    name: "Name 3",
-    phone: "3434545666",
-    balance: 20.05,
-  },
-];
-
-const columns = [
-  {
-    Header: "User ID",
-    accessor: "userId",
-  },
-  {
-    Header: "Name",
-    accessor: "name",
-  },
-  {
-    Header: "Phone",
-    accessor: "phone",
-  },
-  {
-    Header: "Balance",
-    accessor: "balance",
-  },
-];
+import CheckBalance from "./components/CheckBalance";
 
 const App = () => {
   const [merchants, setMerchants] = useState(false);
   const [allWallets, setAllWallets] = useState(true);
   const [newWallet, setNewWallet] = useState(false);
+  const [checkBalance, setCheckBalance] = useState(false);
 
   useEffect(() => {
     getMerchant();
@@ -99,32 +61,36 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="mt-4">
-        {merchants.length > 0
-          ? merchants
-          : "There is no merchant data available"}
+      <div>
+        <div className="mt-4">
+          {merchants.length > 0
+            ? merchants
+            : "There is no merchant data available"}
+        </div>
+        <br />
+        <button
+          className="bg-green-400 p-4 m-4 rounded-sm"
+          onClick={createMerchant}
+        >
+          Add Merchant
+        </button>
+
+        <button
+          className="bg-red-400 p-4 m-4 rounded-sm"
+          onClick={deleteMerchant}
+        >
+          Delete Merchant
+        </button>
+        <div className="mx-4">
+          <header className="bg-blue-400 p-2 w-2/3">Personal Wallet UI</header>
+        </div>
       </div>
-      <br />
-      <button
-        className="bg-green-400 p-4 m-4 rounded-sm"
-        onClick={createMerchant}
-      >
-        Add Merchant
-      </button>
-
-      <button
-        className="bg-red-400 p-4 m-4 rounded-sm"
-        onClick={deleteMerchant}
-      >
-        Delete Merchant
-      </button>
-      <div className="mx-4">
-        <header className="bg-blue-400 p-2 w-2/3">Personal Wallet UI</header>
-
-        <div className="grid grid-row float-left">
+      <div className="grid grid-cols-6 gap-4">
+        <div className="mx-4 col-span-1 grid grid-row float-left">
           <button
             className="bg-yellow-400 p-1 hover:bg-yellow-500"
             onClick={() => {
+              setCheckBalance(false);
               setNewWallet(false);
               setAllWallets(true);
             }}
@@ -134,18 +100,23 @@ const App = () => {
           <button
             className=" bg-blue-400 p-1  hover:bg-blue-500"
             onClick={() => {
+              setCheckBalance(false);
               setAllWallets(false);
               setNewWallet(true);
             }}
           >
             New Wallet
           </button>
-          <a
+          <button
             className=" bg-blue-400 p-1  hover:bg-blue-500"
-            href="/check-balance"
+            onClick={() => {
+              setAllWallets(false);
+              setNewWallet(false);
+              setCheckBalance(true);
+            }}
           >
             Check Balance
-          </a>
+          </button>
           <a className=" bg-blue-400 p-1  hover:bg-blue-500" href="/add-fund">
             Add Funds
           </a>
@@ -159,15 +130,12 @@ const App = () => {
             All Transactions
           </a>
         </div>
+        <div className="col-span-5">
+          {allWallets ? <AllWallets /> : null}
+          {newWallet ? <NewWallet /> : null}
+          {checkBalance ? <CheckBalance /> : null}
+        </div>
       </div>
-      <AllWallets {...{ allWallets, setAllWallets, newWallet, setNewWallet }} />
-      {newWallet ? <NewWallet /> : null}
-      {/* <Table
-        data={data}
-        columns={columns}
-        defaultPageSize={2}
-        pageSizeOptions={[2, 4, 6]}
-      /> */}
     </div>
   );
 };
