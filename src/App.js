@@ -1,5 +1,7 @@
+import { useState } from "react";
 import "./App.css";
 import AllWallets from "./components/AllWallets";
+import NewWallet from "./components/NewWallet";
 
 const data = [
   {
@@ -41,13 +43,14 @@ const columns = [
   },
 ];
 
-function App() {
-  
+const App = () => {
+  const [allWallets, setAllWallets] = useState(true);
+  const [newWallet, setNewWallet] = useState(false);
 
   return (
     <div className="App">
-      <AllWallets />
-
+      <AllWallets {...{ allWallets, setAllWallets, newWallet, setNewWallet }} />
+      {newWallet ? <NewWallet /> : null}
       {/* <Table
         data={data}
         columns={columns}
@@ -56,6 +59,6 @@ function App() {
       /> */}
     </div>
   );
-}
+};
 
 export default App;

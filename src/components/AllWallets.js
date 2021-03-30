@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const AllWallets = () => {
+const AllWallets = ({ allWallets, setAllWallets, newWallet, setNewWallet }) => {
   const [merchants, setMerchants] = useState(false);
 
   useEffect(() => {
@@ -76,15 +76,24 @@ const AllWallets = () => {
         <header className="bg-blue-400 p-2 w-2/3">Personal Wallet UI</header>
 
         <div className="grid grid-row float-left">
-          <a
+          <button
             className="bg-yellow-400 p-1 hover:bg-yellow-500"
-            href="/all-wallets"
+            onClick={() => {
+              setNewWallet(false);
+              setAllWallets(true);
+            }}
           >
             All Wallets
-          </a>
-          <a className=" bg-blue-400 p-1  hover:bg-blue-500" href="/new-wallet">
+          </button>
+          <button
+            className=" bg-blue-400 p-1  hover:bg-blue-500"
+            onClick={() => {
+              setAllWallets(false);
+              setNewWallet(true);
+            }}
+          >
             New Wallet
-          </a>
+          </button>
           <a
             className=" bg-blue-400 p-1  hover:bg-blue-500"
             href="/check-balance"
@@ -106,48 +115,50 @@ const AllWallets = () => {
         </div>
       </div>
 
-      <table className="w-1/2" style={{ background: "#fff" }}>
-        <thead>
-          <tr className=" bg-blue-200">
-            <th className="py-1 px-2">User Id</th>
-            <th className="px-2">Name</th>
-            <th className="px-2">Phone</th>
-            <th className="px-2">Balance (Rs)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Usr1</td>
-            <td>Name 1</td>
-            <td>9988999877</td>
-            <td>765.43</td>
-          </tr>
-          <tr>
-            <td>Usr1</td>
-            <td>Name 1</td>
-            <td>9988999877</td>
-            <td>765.43</td>
-          </tr>
-          <tr>
-            <td>Usr1</td>
-            <td>Name 1</td>
-            <td>9988999877</td>
-            <td>765.43</td>
-          </tr>
-          <tr>
-            <td>Usr1</td>
-            <td>Name 1</td>
-            <td>9988999877</td>
-            <td>765.43</td>
-          </tr>
-          <tr>
-            <td>Usr1</td>
-            <td>Name 1</td>
-            <td>9988999877</td>
-            <td>765.43</td>
-          </tr>
-        </tbody>
-      </table>
+      {allWallets ? (
+        <table className="w-1/2" style={{ background: "#fff" }}>
+          <thead>
+            <tr className=" bg-blue-200">
+              <th className="py-1 px-2">User Id</th>
+              <th className="px-2">Name</th>
+              <th className="px-2">Phone</th>
+              <th className="px-2">Balance (Rs)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Usr1</td>
+              <td>Name 1</td>
+              <td>9988999877</td>
+              <td>765.43</td>
+            </tr>
+            <tr>
+              <td>Usr1</td>
+              <td>Name 1</td>
+              <td>9988999877</td>
+              <td>765.43</td>
+            </tr>
+            <tr>
+              <td>Usr1</td>
+              <td>Name 1</td>
+              <td>9988999877</td>
+              <td>765.43</td>
+            </tr>
+            <tr>
+              <td>Usr1</td>
+              <td>Name 1</td>
+              <td>9988999877</td>
+              <td>765.43</td>
+            </tr>
+            <tr>
+              <td>Usr1</td>
+              <td>Name 1</td>
+              <td>9988999877</td>
+              <td>765.43</td>
+            </tr>
+          </tbody>
+        </table>
+      ) : null}
     </>
   );
 };
