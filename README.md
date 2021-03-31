@@ -11,15 +11,20 @@ Getting started after cloning the repo -
 7. Add dummy entry - `INSERT INTO personal_wallet (user_id, username, phone, balance) VALUES(1, 'adarsh', 123456, 100);`
 8. Open a new terminal - `node server.js`
 
+To connect the app with the backend, do a `node server.js` It will create all the RESTful route related endpoints.
+
 Some configurations in the PostgreSQL - 
 1. List all users - `\du`
 2. `CREATE ROLE my_user WITH LOGIN PASSWORD 'root';`
-3. `ALTER ROLE my_user CREATEDB;` because superuser should not be used. [References](https://stackoverflow.com/a/44904040)
+3. `ALTER ROLE my_user CREATEDB;` 
 
-Run the following inside psql shell (to add auto increment in postgres) -
-1. `ALTER TABLE personal_wallet ADD COLUMN user_id SERIAL PRIMARY KEY;`
+HINTS - Superuser should never be used. [References](https://stackoverflow.com/a/44904040)
 
-Add unique constraint to the balance column of the `personal_wallet` table:
+Run the following inside psql shell () -
+1. To add auto increment in postgres use SERIAL:
+- `ALTER TABLE personal_wallet ADD COLUMN user_id SERIAL PRIMARY KEY;`
+
+2. Add unique constraint to the balance column of the `personal_wallet` table:
 - `ALTER TABLE personal_wallet ADD CONSTRAINT unique_balance UNIQUE(balance);`
 
 Create transactions table - 
@@ -27,4 +32,4 @@ Create transactions table -
 2. `CREATE TABLE transactions (user_id INTEGER, transaction_type transaction_type, trans_date TIMESTAMP, initial_balance INTEGER, amount INTEGER, final_balance INTEGER, remarks VARCHAR(30), FOREIGN KEY (user_id) REFERENCES personal_wallet(user_id), FOREIGN KEY (final_balance) REFERENCES personal_wallet(balance));`
 
 Tips - 
-If you are stuck in the Peer authentication error, follow [this](https://itsfoss.com/install-postgresql-ubuntu/) article.
+- If you are stuck in the Peer authentication error, follow [this](https://itsfoss.com/install-postgresql-ubuntu/) article.
