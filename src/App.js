@@ -3,12 +3,18 @@ import "./App.css";
 import AllWallets from "./components/AllWallets";
 import NewWallet from "./components/NewWallet";
 import CheckBalance from "./components/CheckBalance";
+import AddFunds from "./components/AddFunds";
+import SpendFunds from "./components/SpendFunds";
+import AllTransactions from "./components/AllTransactions";
 
 const App = () => {
   const [merchants, setMerchants] = useState(false);
   const [allWallets, setAllWallets] = useState(true);
   const [newWallet, setNewWallet] = useState(false);
   const [checkBalance, setCheckBalance] = useState(false);
+  const [addFunds, setAddFunds] = useState(false);
+  const [spendFunds, setSpendFunds] = useState(false);
+  const [showAllTransactions, setShowAllTransactions] = useState(false);
 
   useEffect(() => {
     getMerchant();
@@ -92,6 +98,9 @@ const App = () => {
             onClick={() => {
               setCheckBalance(false);
               setNewWallet(false);
+              setAddFunds(false);
+              setSpendFunds(false);
+              setShowAllTransactions(false);
               setAllWallets(true);
             }}
           >
@@ -102,6 +111,9 @@ const App = () => {
             onClick={() => {
               setCheckBalance(false);
               setAllWallets(false);
+              setAddFunds(false);
+              setSpendFunds(false);
+              setShowAllTransactions(false);
               setNewWallet(true);
             }}
           >
@@ -112,28 +124,61 @@ const App = () => {
             onClick={() => {
               setAllWallets(false);
               setNewWallet(false);
+              setAddFunds(false);
+              setSpendFunds(false);
+              setShowAllTransactions(false);
               setCheckBalance(true);
             }}
           >
             Check Balance
           </button>
-          <a className=" bg-blue-400 p-1  hover:bg-blue-500" href="/add-fund">
-            Add Funds
-          </a>
-          <a className=" bg-blue-400 p-1  hover:bg-blue-500" href="/spend-fund">
-            Spend Funds
-          </a>
-          <a
+          <button
             className=" bg-blue-400 p-1  hover:bg-blue-500"
-            href="/all-transactions"
+            onClick={() => {
+              setAllWallets(false);
+              setNewWallet(false);
+              setAddFunds(false);
+              setSpendFunds(false);
+              setShowAllTransactions(false);
+              setAddFunds(true);
+            }}
+          >
+            Add Funds
+          </button>
+          <button
+            className=" bg-blue-400 p-1  hover:bg-blue-500"
+            onClick={() => {
+              setAllWallets(false);
+              setNewWallet(false);
+              setAddFunds(false);
+              setAddFunds(false);
+              setShowAllTransactions(false);
+              setSpendFunds(true);
+            }}
+          >
+            Spend Funds
+          </button>
+          <button
+            className=" bg-blue-400 p-1  hover:bg-blue-500"
+            onClick={() => {
+              setAllWallets(false);
+              setNewWallet(false);
+              setAddFunds(false);
+              setAddFunds(false);
+              setSpendFunds(false);
+              setShowAllTransactions(true);
+            }}
           >
             All Transactions
-          </a>
+          </button>
         </div>
         <div className="col-span-5">
           {allWallets ? <AllWallets /> : null}
           {newWallet ? <NewWallet /> : null}
           {checkBalance ? <CheckBalance /> : null}
+          {addFunds ? <AddFunds /> : null}
+          {spendFunds ? <SpendFunds /> : null}
+          {showAllTransactions ? <AllTransactions /> : null}
         </div>
       </div>
     </div>
