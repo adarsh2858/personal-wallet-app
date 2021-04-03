@@ -96,12 +96,12 @@ const App = () => {
           <button
             className="bg-yellow-400 p-1 hover:bg-yellow-500"
             onClick={() => {
-              setCheckBalance(false);
+              setAllWallets(true);
               setNewWallet(false);
+              setCheckBalance(false);
               setAddFunds(false);
               setSpendFunds(false);
               setShowAllTransactions(false);
-              setAllWallets(true);
             }}
           >
             All Wallets
@@ -109,12 +109,12 @@ const App = () => {
           <button
             className=" bg-blue-400 p-1  hover:bg-blue-500"
             onClick={() => {
-              setCheckBalance(false);
               setAllWallets(false);
+              setNewWallet(true);
+              setCheckBalance(false);
               setAddFunds(false);
               setSpendFunds(false);
               setShowAllTransactions(false);
-              setNewWallet(true);
             }}
           >
             New Wallet
@@ -124,10 +124,10 @@ const App = () => {
             onClick={() => {
               setAllWallets(false);
               setNewWallet(false);
+              setCheckBalance(true);
               setAddFunds(false);
               setSpendFunds(false);
               setShowAllTransactions(false);
-              setCheckBalance(true);
             }}
           >
             Check Balance
@@ -137,10 +137,10 @@ const App = () => {
             onClick={() => {
               setAllWallets(false);
               setNewWallet(false);
-              setAddFunds(false);
+              setCheckBalance(false);
+              setAddFunds(true);
               setSpendFunds(false);
               setShowAllTransactions(false);
-              setAddFunds(true);
             }}
           >
             Add Funds
@@ -150,10 +150,10 @@ const App = () => {
             onClick={() => {
               setAllWallets(false);
               setNewWallet(false);
+              setCheckBalance(false);
               setAddFunds(false);
-              setAddFunds(false);
-              setShowAllTransactions(false);
               setSpendFunds(true);
+              setShowAllTransactions(false);
             }}
           >
             Spend Funds
@@ -163,7 +163,7 @@ const App = () => {
             onClick={() => {
               setAllWallets(false);
               setNewWallet(false);
-              setAddFunds(false);
+              setCheckBalance(false);
               setAddFunds(false);
               setSpendFunds(false);
               setShowAllTransactions(true);
