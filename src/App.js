@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import classnames from "classnames";
 import "./App.css";
 import AllWallets from "./components/AllWallets";
 import NewWallet from "./components/NewWallet";
@@ -94,7 +95,10 @@ const App = () => {
       <div className="grid grid-cols-6 gap-4">
         <div className="mx-4 col-span-1 grid grid-row float-left">
           <button
-            className="bg-yellow-400 p-1 hover:bg-yellow-500"
+            className={classnames({
+              "bg-yellow-400 p-1 hover:bg-yellow-500": allWallets,
+              " bg-blue-400 p-1  hover:bg-blue-500": !allWallets,
+            })}
             onClick={() => {
               setAllWallets(true);
               setNewWallet(false);
@@ -107,7 +111,10 @@ const App = () => {
             All Wallets
           </button>
           <button
-            className=" bg-blue-400 p-1  hover:bg-blue-500"
+            className={classnames({
+              "bg-yellow-400 p-1 hover:bg-yellow-500": newWallet,
+              " bg-blue-400 p-1  hover:bg-blue-500": !newWallet,
+            })}
             onClick={() => {
               setAllWallets(false);
               setNewWallet(true);
@@ -120,7 +127,10 @@ const App = () => {
             New Wallet
           </button>
           <button
-            className=" bg-blue-400 p-1  hover:bg-blue-500"
+            className={classnames({
+              "bg-yellow-400 p-1 hover:bg-yellow-500": checkBalance,
+              " bg-blue-400 p-1  hover:bg-blue-500": !checkBalance,
+            })}
             onClick={() => {
               setAllWallets(false);
               setNewWallet(false);
@@ -133,7 +143,10 @@ const App = () => {
             Check Balance
           </button>
           <button
-            className=" bg-blue-400 p-1  hover:bg-blue-500"
+            className={classnames({
+              "bg-yellow-400 p-1 hover:bg-yellow-500": addFunds,
+              " bg-blue-400 p-1  hover:bg-blue-500": !addFunds,
+            })}
             onClick={() => {
               setAllWallets(false);
               setNewWallet(false);
@@ -146,7 +159,10 @@ const App = () => {
             Add Funds
           </button>
           <button
-            className=" bg-blue-400 p-1  hover:bg-blue-500"
+            className={classnames({
+              "bg-yellow-400 p-1 hover:bg-yellow-500": spendFunds,
+              " bg-blue-400 p-1  hover:bg-blue-500": !spendFunds,
+            })}
             onClick={() => {
               setAllWallets(false);
               setNewWallet(false);
@@ -159,7 +175,10 @@ const App = () => {
             Spend Funds
           </button>
           <button
-            className=" bg-blue-400 p-1  hover:bg-blue-500"
+            className={classnames({
+              "bg-yellow-400 p-1 hover:bg-yellow-500": showAllTransactions,
+              " bg-blue-400 p-1  hover:bg-blue-500": !showAllTransactions,
+            })}
             onClick={() => {
               setAllWallets(false);
               setNewWallet(false);
