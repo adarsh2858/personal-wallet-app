@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import classnames from "classnames";
 import "./App.css";
+import {  connect } from "react-redux";
+import * as actionTypes from "./store/actions";
 import AllWallets from "./components/AllWallets";
 import NewWallet from "./components/NewWallet";
 import CheckBalance from "./components/CheckBalance";
@@ -8,7 +10,7 @@ import AddFunds from "./components/AddFunds";
 import SpendFunds from "./components/SpendFunds";
 import AllTransactions from "./components/AllTransactions";
 
-const App = () => {
+const App = (props) => {
   const [merchants, setMerchants] = useState(false);
   const [allWallets, setAllWallets] = useState(true);
   const [newWallet, setNewWallet] = useState(false);
@@ -96,10 +98,11 @@ const App = () => {
         <div className="mx-4 col-span-1 grid grid-row float-left">
           <button
             className={classnames({
-              "bg-yellow-400 p-1 hover:bg-yellow-500": allWallets,
-              " bg-blue-400 p-1  hover:bg-blue-500": !allWallets,
+              "bg-yellow-400 p-1 hover:bg-yellow-500": props.showAllWallets,
+              " bg-blue-400 p-1  hover:bg-blue-500": !props.showAllWallets,
             })}
             onClick={() => {
+              props.onAllWalletsClick();
               setAllWallets(true);
               setNewWallet(false);
               setCheckBalance(false);
@@ -112,10 +115,11 @@ const App = () => {
           </button>
           <button
             className={classnames({
-              "bg-yellow-400 p-1 hover:bg-yellow-500": newWallet,
-              " bg-blue-400 p-1  hover:bg-blue-500": !newWallet,
+              "bg-yellow-400 p-1 hover:bg-yellow-500": props.showNewWallet,
+              " bg-blue-400 p-1  hover:bg-blue-500": !props.showNewWallet,
             })}
             onClick={() => {
+              props.onNewWalletClick();
               setAllWallets(false);
               setNewWallet(true);
               setCheckBalance(false);
@@ -204,4 +208,18 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    showAllWallets: state.allWallets,
+    showNewWallet: state.newWallet,
+  };
+};
+
+const mapDispatchStateToProps = (dispatch) => {
+  return {
+    onAllWalletsClick: dispatch({ type: actionTypes.SWITCH_ALL_WALLETS }),
+    onNewWalletClick: dispatch({ type: actionTypes.SWITCH_NEW_WALLET }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchStateToProps)(App);
