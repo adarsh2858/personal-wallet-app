@@ -62,8 +62,23 @@ const App = (props) => {
       });
   }
 
+  const getTransactions = async () => {
+    const userId = "Usr1";
+
+    const response = await fetch(
+      `http://localhost:3001/transactions`,
+      {
+        method: "GET",
+      }
+    );
+    
+    const data = await response.json();
+    console.log(data)
+  };
+
   return (
     <div className="App">
+      <button className="bg bg-purple-400 p-4 rounded-md m-2" onClick={getTransactions}>Get Transactions</button>
       <div>
         <div className="mt-4">
           {merchants.length > 0
