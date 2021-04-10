@@ -34,5 +34,8 @@ Create transactions table -
 1. `CREATE TYPE transaction_type AS ENUM ('add_funds', 'spend_funds');`
 2. `CREATE TABLE transactions (user_id INTEGER, transaction_type transaction_type, trans_date TIMESTAMP, initial_balance INTEGER, amount INTEGER, final_balance INTEGER, remarks VARCHAR(30), FOREIGN KEY (user_id) REFERENCES personal_wallet(user_id), FOREIGN KEY (final_balance) REFERENCES personal_wallet(balance));`
 
+SAMPLE ENTRY - 
+`INSERT INTO transactions VALUES (1, 'add_funds', CURRENT_TIMESTAMP, 200, 100, 100, 'Hello world');`
+
 Tips - 
 - If you are stuck in the Peer authentication error, follow [this](https://itsfoss.com/install-postgresql-ubuntu/) article.
