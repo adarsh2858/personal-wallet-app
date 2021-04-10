@@ -16,7 +16,10 @@ To connect the app with the backend, do a `node server.js` It will create all th
 Some configurations in the PostgreSQL - 
 1. List all users - `\du`
 2. `CREATE ROLE my_user WITH LOGIN PASSWORD 'root';`
-3. `ALTER ROLE my_user CREATEDB;` 
+3. `ALTER ROLE my_user CREATEDB;`   
+
+To login as a certain user to a certain database:
+`psql -U testuser testdb`
 
 HINTS - Superuser should never be used. [References](https://stackoverflow.com/a/44904040)
 
