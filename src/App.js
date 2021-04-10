@@ -215,11 +215,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchStateToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onAllWalletsClick: dispatch({ type: actionTypes.SWITCH_ALL_WALLETS }),
-    onNewWalletClick: dispatch({ type: actionTypes.SWITCH_NEW_WALLET }),
+    onAllWalletsClick: () => dispatch({ type: actionTypes.SWITCH_ALL_WALLETS }),
+    onNewWalletClick: () => dispatch({ type: actionTypes.SWITCH_NEW_WALLET }),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
