@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import classnames from "classnames";
 import "./App.css";
-import {  connect } from "react-redux";
+import { connect } from "react-redux";
 import * as actionTypes from "./store/actions";
 import AllWallets from "./components/AllWallets";
 import NewWallet from "./components/NewWallet";
@@ -12,12 +12,6 @@ import AllTransactions from "./components/AllTransactions";
 
 const App = (props) => {
   const [merchants, setMerchants] = useState(false);
-  const [allWallets, setAllWallets] = useState(true);
-  const [newWallet, setNewWallet] = useState(false);
-  const [checkBalance, setCheckBalance] = useState(false);
-  const [addFunds, setAddFunds] = useState(false);
-  const [spendFunds, setSpendFunds] = useState(false);
-  const [showAllTransactions, setShowAllTransactions] = useState(false);
 
   useEffect(() => {
     getMerchant();
@@ -101,15 +95,7 @@ const App = (props) => {
               "bg-yellow-400 p-1 hover:bg-yellow-500": props.showAllWallets,
               " bg-blue-400 p-1  hover:bg-blue-500": !props.showAllWallets,
             })}
-            onClick={() => {
-              props.onAllWalletsClick();
-              setAllWallets(true);
-              setNewWallet(false);
-              setCheckBalance(false);
-              setAddFunds(false);
-              setSpendFunds(false);
-              setShowAllTransactions(false);
-            }}
+            onClick={props.onAllWalletsClick}
           >
             All Wallets
           </button>
@@ -118,90 +104,55 @@ const App = (props) => {
               "bg-yellow-400 p-1 hover:bg-yellow-500": props.showNewWallet,
               " bg-blue-400 p-1  hover:bg-blue-500": !props.showNewWallet,
             })}
-            onClick={() => {
-              props.onNewWalletClick();
-              setAllWallets(false);
-              setNewWallet(true);
-              setCheckBalance(false);
-              setAddFunds(false);
-              setSpendFunds(false);
-              setShowAllTransactions(false);
-            }}
+            onClick={props.onNewWalletClick}
           >
             New Wallet
           </button>
           <button
             className={classnames({
-              "bg-yellow-400 p-1 hover:bg-yellow-500": checkBalance,
-              " bg-blue-400 p-1  hover:bg-blue-500": !checkBalance,
+              "bg-yellow-400 p-1 hover:bg-yellow-500": props.showCheckBalance,
+              " bg-blue-400 p-1  hover:bg-blue-500": !props.showCheckBalance,
             })}
-            onClick={() => {
-              setAllWallets(false);
-              setNewWallet(false);
-              setCheckBalance(true);
-              setAddFunds(false);
-              setSpendFunds(false);
-              setShowAllTransactions(false);
-            }}
+            onClick={props.onCheckBalanceClick}
           >
             Check Balance
           </button>
           <button
             className={classnames({
-              "bg-yellow-400 p-1 hover:bg-yellow-500": addFunds,
-              " bg-blue-400 p-1  hover:bg-blue-500": !addFunds,
+              "bg-yellow-400 p-1 hover:bg-yellow-500": props.showAddFunds,
+              " bg-blue-400 p-1  hover:bg-blue-500": !props.showAddFunds,
             })}
-            onClick={() => {
-              setAllWallets(false);
-              setNewWallet(false);
-              setCheckBalance(false);
-              setAddFunds(true);
-              setSpendFunds(false);
-              setShowAllTransactions(false);
-            }}
+            onClick={props.onAddFundsClick}
           >
             Add Funds
           </button>
           <button
             className={classnames({
-              "bg-yellow-400 p-1 hover:bg-yellow-500": spendFunds,
-              " bg-blue-400 p-1  hover:bg-blue-500": !spendFunds,
+              "bg-yellow-400 p-1 hover:bg-yellow-500": props.showSpendFunds,
+              " bg-blue-400 p-1  hover:bg-blue-500": !props.showSpendFunds,
             })}
-            onClick={() => {
-              setAllWallets(false);
-              setNewWallet(false);
-              setCheckBalance(false);
-              setAddFunds(false);
-              setSpendFunds(true);
-              setShowAllTransactions(false);
-            }}
+            onClick={props.onSpendFundsClick}
           >
             Spend Funds
           </button>
           <button
             className={classnames({
-              "bg-yellow-400 p-1 hover:bg-yellow-500": showAllTransactions,
-              " bg-blue-400 p-1  hover:bg-blue-500": !showAllTransactions,
+              "bg-yellow-400 p-1 hover:bg-yellow-500":
+                props.showAllTransactions,
+              " bg-blue-400 p-1  hover:bg-blue-500": !props.showAllTransactions,
             })}
-            onClick={() => {
-              setAllWallets(false);
-              setNewWallet(false);
-              setCheckBalance(false);
-              setAddFunds(false);
-              setSpendFunds(false);
-              setShowAllTransactions(true);
-            }}
+            onClick={props.onAllTransactionsClick}
           >
             All Transactions
           </button>
         </div>
         <div className="col-span-5">
-          {allWallets ? <AllWallets /> : null}
-          {newWallet ? <NewWallet /> : null}
-          {checkBalance ? <CheckBalance /> : null}
-          {addFunds ? <AddFunds /> : null}
-          {spendFunds ? <SpendFunds /> : null}
-          {showAllTransactions ? <AllTransactions /> : null}
+          {props.showAllWallets ? <AllWallets /> : null}
+          {props.showNewWallet ? <NewWallet /> : null}
+          {props.showCheckBalance ? <CheckBalance /> : null}
+          {props.showAddFunds ? <AddFunds /> : null}
+          {props.showSpendFunds ? <SpendFunds /> : null}
+          {props.showAllTransactions ? <AllTransactions /> : null}
         </div>
       </div>
     </div>
@@ -212,6 +163,10 @@ const mapStateToProps = (state) => {
   return {
     showAllWallets: state.allWallets,
     showNewWallet: state.newWallet,
+    showCheckBalance: state.checkBalance,
+    showAddFunds: state.addFunds,
+    showSpendFunds: state.spendFunds,
+    showAllTransactions: state.allTransactions,
   };
 };
 
@@ -219,6 +174,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAllWalletsClick: () => dispatch({ type: actionTypes.SWITCH_ALL_WALLETS }),
     onNewWalletClick: () => dispatch({ type: actionTypes.SWITCH_NEW_WALLET }),
+    onCheckBalanceClick: () =>
+      dispatch({ type: actionTypes.SWITCH_CHECK_BALANCE }),
+    onAddFundsClick: () => dispatch({ type: actionTypes.SWITCH_ADD_FUNDS }),
+    onSpendFundsClick: () => dispatch({ type: actionTypes.SWITCH_SPEND_FUNDS }),
+    onAllTransactionsClick: () =>
+      dispatch({ type: actionTypes.SWITCH_ALL_TRANSACTIONS }),
   };
 };
 
