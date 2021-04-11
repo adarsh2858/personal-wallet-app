@@ -71,7 +71,31 @@ app.get("/transactions", (req, res) => {
     console.log(results.rows);
     res.send(results.rows);
   });
+});
 
+app.put("/addFunds", (req, res) => {
+  console.log("Add funds");
+  console.log(req.body.user_id);
+  console.log(req.body.amount);
+
+  // Add the amount and user_id info in the transactions table
+  // pool.query(
+  //   `INSERT INTO transactions VALUES ("${req.body.user_id}", "${req.body.amount}")`
+  // );
+  // pool.query(
+  //   `INSERT INTO personal_wallet VALUES ("${}", "${req.body.amount}") WHERE user_id = req.body.user_id`
+  // );
+  // Update the balance for the selected user in the personal_wallet table
+  res.send("Adding fund");
+});
+
+app.put("/spendFunds", (req, res) => {
+  console.log("Spend Funds");
+  console.log(req.body.user_id);
+  console.log(req.body.amount);
+  // Deduct the amount and add user_id info in the transactions table
+  // Update the balance for the two users in the personal_wallet table
+  res.send("Spending fund");
 });
 
 app.listen(port, () => {
