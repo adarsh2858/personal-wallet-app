@@ -75,7 +75,7 @@ app.get("/transactions", (req, res) => {
 
 app.put("/addFunds", (req, res) => {
   console.log("Add funds");
-  console.log(req.body.user_id);
+  console.log(req.body.userId);
   console.log(req.body.amount);
 
   // Add the amount and user_id info in the transactions table
@@ -91,7 +91,7 @@ app.put("/addFunds", (req, res) => {
 
 app.put("/spendFunds", (req, res) => {
   console.log("Spend Funds");
-  console.log(req.body.user_id);
+  console.log(req.body.userId);
   console.log(req.body.amount);
   // Deduct the amount and add user_id info in the transactions table
   // Update the balance for the two users in the personal_wallet table
