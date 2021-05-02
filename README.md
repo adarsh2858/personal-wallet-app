@@ -38,4 +38,9 @@ SAMPLE ENTRY -
 `INSERT INTO transactions VALUES (1, 'add_funds', CURRENT_TIMESTAMP, 200, 100, 100, 'Hello world');`
 
 Tips - 
-- If you are stuck in the Peer authentication error, follow [this](https://itsfoss.com/install-postgresql-ubuntu/) article.
+- If you are stuck in the Peer authentication error, follow [this](https://itsfoss.com/install-postgresql-ubuntu/) article.  
+
+Ending - 
+Use the ready-to-use Tailwind CSS blocks on a particular route to generate awesome pages.  
+Take care of the responsiveness and depict every key behavior or component in a simple way.  
+Hands-on of a crash course done with Harry.
