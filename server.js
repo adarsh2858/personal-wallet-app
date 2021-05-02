@@ -130,6 +130,10 @@ app.put("/spendFunds", (req, res) => {
   res.send("Spending fund");
 });
 
+app.get("/tailblocks", (req, res) => {
+  res.sendFile("public/tailblocks.html", { root: __dirname });
+});
+
 app.listen(port, () => {
   console.log(`App running on the port ${port}.`);
 });
