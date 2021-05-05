@@ -18,7 +18,7 @@ const App = (props) => {
   }, []);
 
   function getMerchant() {
-    fetch("http://localhost:3001/")
+    fetch("/get-merchants")
       .then((response) => {
         return response.text();
       })
@@ -31,7 +31,7 @@ const App = (props) => {
     let name = prompt("Enter the merchant's name");
     let phone = prompt("Enter the merchant's phone");
 
-    fetch("http://localhost:3001/merchants", {
+    fetch("/merchants", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -50,7 +50,7 @@ const App = (props) => {
   function deleteMerchant() {
     let id = prompt("Enter the merchant's ID:");
 
-    fetch(`http://localhost:3001/merchant/${id}`, {
+    fetch(`/merchant/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -66,7 +66,7 @@ const App = (props) => {
     const userId = "Usr1";
 
     const response = await fetch(
-      `http://localhost:3001/transactions`,
+      `/transactions`,
       {
         method: "GET",
       }

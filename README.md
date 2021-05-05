@@ -9,7 +9,7 @@ Getting started after cloning the repo -
 5. List the tables - `\dt`
 6. List down the entries from a table - `SELECT * FROM personal_wallet;`
 7. Add dummy entry - `INSERT INTO personal_wallet (user_id, username, phone, balance) VALUES(1, 'adarsh', 123456, 100);`
-8. Open a new terminal - `node server.js` or `yarn run serve` if using yarn.
+8. Open a new terminal - `node server.js` or `yarn run server` if using yarn.
 
 To connect the app with the backend, do a `node server.js` It will create all the RESTful route related endpoints.
 
