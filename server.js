@@ -16,7 +16,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get("/", (req, res) => {
+app.get("/get-merchants", (req, res) => {
   merchant_model
     .getMerchants()
     .then((response) => {
